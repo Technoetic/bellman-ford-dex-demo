@@ -1,0 +1,379 @@
+/* ---------------- SHARED ---------------- */
+.map-dot {
+  fill: rgba(154, 154, 154, 0.12);
+}
+
+.visual__label {
+  position: absolute;
+  top: var(--s-3);
+  left: var(--s-3);
+  font-size: var(--fs-xs);
+  color: var(--accent);
+  font-weight: var(--fw-bold);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.visual__label span {
+  color: var(--text-dim);
+  font-weight: var(--fw-reg);
+}
+
+button {
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  padding: 12px var(--s-3);
+  min-height: 44px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--r-2);
+  cursor: pointer;
+  flex: 1;
+  transition:
+    transform 300ms ease-in-out,
+    background 300ms ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+button.ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------------- DEX DEMO ---------------- */
+.dex {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s-4);
+}
+
+@media (width <= 860px) {
+  .dex {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dex__canvas {
+  position: relative;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(39, 117, 202, 0.06) 0, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(245, 172, 55, 0.06) 0, transparent 40%), var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-3);
+  padding: var(--s-3);
+  padding-top: calc(var(--s-3) + 18px);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#dexGraph {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  display: block;
+}
+
+.dex-node {
+  transition: all 300ms ease-in-out;
+}
+
+.dex-node-icon {
+  font: var(--fw-bold) 20px var(--font-ui);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.dex-node-label {
+  fill: var(--text);
+  font: var(--fw-bold) 12px var(--font-mono);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.dex-edge {
+  stroke: var(--border);
+  stroke-width: 1.5;
+  transition: all 300ms ease-in-out;
+}
+
+.dex-edge--path {
+  stroke: var(--accent);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 4px rgba(245, 213, 71, 0.4));
+}
+
+.dex-edge--arb {
+  stroke: var(--danger);
+  stroke-width: 3;
+  stroke-dasharray: 6 4;
+  filter: drop-shadow(0 0 4px rgba(239, 83, 80, 0.5));
+}
+
+.dex__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-3);
+  padding-top: var(--s-2);
+  border-top: 1px dashed var(--border);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+
+.dex__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dex__swatch {
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--border);
+}
+
+.dex__swatch--path {
+  background: var(--accent);
+  height: 3px;
+}
+
+.dex__swatch--arb {
+  background: transparent;
+  border-top: 3px dashed var(--danger);
+  height: 0;
+}
+
+/* 오른쪽 스왑 패널 */
+.dex__panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-3);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.dex__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dex__field label {
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dex__field input,
+.dex__field select {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2);
+  padding: 12px var(--s-3);
+  min-height: 44px;
+  font: var(--fw-bold) var(--fs-sm) var(--font-ui);
+  cursor: pointer;
+  transition: border-color 300ms ease-in-out;
+}
+
+.dex__field input:focus,
+.dex__field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
+.dex__arrow {
+  text-align: center;
+  color: var(--accent);
+  font: var(--fw-bold) 20px var(--font-ui);
+  margin: -8px 0;
+}
+
+.dex__btns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+
+.dex__btns button {
+  width: 100%;
+  flex: none;
+}
+
+/* 결과 카드 */
+.dex__result {
+  margin-top: var(--s-2);
+}
+
+.dex-result {
+  background: var(--surface-2);
+  border: 1px solid var(--accent);
+  border-radius: var(--r-2);
+  padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.dex-result--err {
+  border-color: var(--danger);
+}
+
+.dex-result--arb {
+  border-color: var(--danger);
+  background: rgba(239, 83, 80, 0.06);
+}
+
+.dex-result h4 {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+}
+
+.dex-result p {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.dex-route-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.dex-route-line--arb .dex-chip {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.dex-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: var(--r-4);
+  font: var(--fw-bold) 12px var(--font-mono);
+  color: var(--accent);
+}
+
+.dex-arr {
+  color: var(--text-dim);
+  font: var(--fw-bold) 12px var(--font-mono);
+}
+
+.dex-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.dex-steps li {
+  padding: 6px var(--s-2);
+  background: var(--bg);
+  border-radius: var(--r-1);
+  border-left: 2px solid var(--accent);
+}
+
+.dex-steps b {
+  color: var(--text);
+}
+
+.dex-steps .venue {
+  color: var(--accent);
+}
+
+.dex-steps .rate {
+  color: var(--ok);
+}
+
+.dex-steps .running {
+  color: var(--text-dim);
+  float: right;
+}
+
+.dex-compare {
+  padding: var(--s-2) var(--s-3);
+  background: var(--bg);
+  border-radius: var(--r-1);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+}
+
+.dex-compare .up {
+  color: var(--ok);
+}
+
+.dex-compare .down {
+  color: var(--danger);
+}
+
+/* 핵심 아이디어 박스 */
+.dex__note {
+  margin-top: var(--s-4);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-3);
+}
+
+.dex__note h4 {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+}
+
+.dex__note ul {
+  margin: 0;
+  padding-left: var(--s-4);
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+}
+
+.dex__note code {
+  font-family: var(--font-mono);
+  background: var(--surface-2);
+  padding: 0 4px;
+  border-radius: var(--r-1);
+  color: var(--accent);
+  font-size: 12px;
+}

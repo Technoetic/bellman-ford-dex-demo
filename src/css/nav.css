@@ -1,0 +1,32 @@
+/* ---------------- NAV ---------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-3) var(--s-5);
+  background: rgb(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav__brand {
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+}
+
+.nav__links {
+  display: flex;
+  gap: var(--s-4);
+}
+
+.nav__links a {
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+}
+
+.nav__links a:hover {
+  color: var(--accent);
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="DEX 스왑 라우팅 인터랙티브 데모 — 벨먼-포드로 최적 경로와 arbitrage 탐지를 직접 조작." />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:title" content="DEX 스왑 라우팅 · 인터랙티브 데모" />
+<meta property="og:description" content="목업 유동성 그래프에서 벨먼-포드로 최적 스왑 경로를 찾습니다." />
+<meta property="og:type" content="article" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%230a0a0a%22/><text y=%2213%22 x=%221%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2212%22 fill=%22%23f5d547%22>BF</text></svg>" />
+<title>DEX 스왑 라우팅 · 인터랙티브</title>
+<link rel="stylesheet" href="src/css/main.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav__brand">Bellman–Ford</div>
+    <nav class="nav__links">
+      <a href="#dex">DEX 데모</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- DEX INTERACTIVE DEMO -->
+    <section id="dex" class="section">
+      <h2>💱 DEX 스왑 라우팅 · 인터랙티브</h2>
+      <div class="dex">
+        <div class="dex__canvas">
+          <div class="visual__label">💱 토큰 유동성 그래프 <span>· 14개 풀</span></div>
+          <svg id="dexGraph" viewBox="0 0 600 360" role="img" aria-label="DEX 토큰 그래프"></svg>
+          <div class="dex__legend">
+            <span class="dex__legend-item"><span class="dex__swatch"></span> 일반 풀</span>
+            <span class="dex__legend-item"><span class="dex__swatch dex__swatch--path"></span> 최적 경로</span>
+            <span class="dex__legend-item"><span class="dex__swatch dex__swatch--arb"></span> 💰 Arbitrage 사이클</span>
+          </div>
+        </div>
+
+        <aside class="dex__panel">
+          <div class="dex__field">
+            <label for="dexAmount">수량 (From)</label>
+            <input id="dexAmount" type="number" value="1000" min="1" step="1" />
+          </div>
+          <div class="dex__field">
+            <label for="dexFrom">FROM</label>
+            <select id="dexFrom"></select>
+          </div>
+          <div class="dex__arrow">↓</div>
+          <div class="dex__field">
+            <label for="dexTo">TO</label>
+            <select id="dexTo"></select>
+          </div>
+          <div class="dex__btns">
+            <button id="dexFindRoute" type="button">🔍 최적 경로 찾기</button>
+            <button id="dexArb" type="button" class="ghost">💰 Arbitrage 탐지</button>
+          </div>
+          <div id="dexResult" class="dex__result"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="src/js/app.js"></script>
+</body>
+</html>
