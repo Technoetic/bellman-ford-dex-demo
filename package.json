@@ -4,17 +4,5 @@
   "private": true,
   "type": "module",
   "description": "DEX 스왑 라우팅 인터랙티브 데모 — 벨먼-포드로 최적 경로와 arbitrage 탐지",
-  "scripts": {
-    "dev": "npx http-server -p 8765 -s .",
-    "build": "node bundle.cjs",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.11",
-    "@vitest/coverage-v8": "^2.1.9",
-    "http-server": "^14.1.1",
-    "jsdom": "^25.0.1",
-    "vitest": "^2.1.9"
-  }
+  "homepage": "https://technoetic.github.io/bellman-ford-dex-demo/"
 }
